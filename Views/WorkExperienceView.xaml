@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Class="PersonalStatementTool.Presentation2.Views.WorkExperienceView"
              xmlns:local="clr-namespace:PersonalStatementTool.Presentation2.Views"
-             xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2.Viewmodels"
+             xmlns:viewModels="clr-namespace:PersonalStatementTool.ViewModels;assembly=PersonalStatementTool.Core"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:Core="clr-namespace:PersonalStatementTool.Core;assembly=PersonalStatementTool.Core" xmlns:MessageBus="clr-namespace:Dynamensions.Infrastructure.Busses.MessageBus;assembly=Dynamensions.Infrastructure.MessageBus" x:Class="PersonalStatementTool.Presentation2.Views.WorkExperienceView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <Core:PersonalStatementService x:Key="PersonalStatementService"/>
         <MessageBus:MessageBus x:Key="MessageBus"/>
     </UserControl.Resources>
     
     <UserControl.DataContext>
         <viewModels:WorkExperienceViewModel MessageBus="{StaticResource MessageBus}" PersonalStatementService="{StaticResource PersonalStatementService}" />
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <Grid>
         <TextBlock Text="Include details of jobs, placements, work experience or voluntary work, particularly if it's relevant to your chosen course(s). Try to link any experience to skills or qualities related to the course." Margin="0,214,10,148" TextWrapping="Wrap" />
         <TextBox x:Name="WorkExperienceAndFuturePlansQuestion1TxtBlock" Height="148" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,61,10,0">

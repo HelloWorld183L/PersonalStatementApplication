@@ -3,21 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2.Viewmodels"
+             xmlns:viewModels="clr-namespace:PersonalStatementTool.ViewModels;assembly=PersonalStatementTool.Core"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:Services="clr-namespace:PersonalStatementTool.Core;assembly=PersonalStatementTool.Core"
-             xmlns:MessageBus="clr-namespace:Dynamensions.Infrastructure.Busses.MessageBus;assembly=Dynamensions.Infrastructure.MessageBus"
              x:Class="PersonalStatementTool.Presentation2.Views.SkillsView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <MessageBus:MessageBus x:Key="MessageBus"/>
         <Services:PersonalStatementService x:Key="PersonalStatementService" />
     </UserControl.Resources>
     
     <UserControl.DataContext>
         <viewModels:SkillsViewModel MessageBus="{StaticResource MessageBus}" PersonalStatementService="{StaticResource PersonalStatementService}"/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     
     <Grid>
         <TextBlock Text="Include any other achievements you're proud of, positions of responsibility that you hold or have held both in and out of school, and attributes that make you interesting, special or unique." Margin="0,225,0,153" TextWrapping="Wrap" />

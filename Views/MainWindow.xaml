@@ -3,28 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2.Viewmodels"
+        xmlns:viewModels="clr-namespace:PersonalStatementTool.ViewModels;assembly=PersonalStatementTool.Core"
         xmlns:views="clr-namespace:PersonalStatementTool.Presentation2.Views"
         mc:Ignorable="d"
-        Title="Personal Statement Tool" Height="652.5" Width="800">
-
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels:CourseViewModel }">
-            <views:CourseView />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewModels:SkillsViewModel }">
-            <views:SkillsView />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewModels:WorkExperienceViewModel }">
-            <views:WorkExperienceView />
-        </DataTemplate>
-    </Window.Resources>
-
-    <Window.DataContext>
-        <viewModels:MainWindowViewModel />
-    </Window.DataContext>
+        Title="Personal Statement Tool" Height="652.5" Width="800"
+        d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, d:IsDesignTimeCreatable=True}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -47,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="4" HorizontalAlignment="Right" Grid.Row="6" Width="455" Margin="0,51,0,10" >
-            <TextBox x:Name="statementOutputBox" HorizontalAlignment="Left" Height="453" Margin="9,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="435" IsEnabled="False" Text="{Binding PersonalStatementService.PersonalStatement.Text}"/>
+            <TextBox x:Name="statementOutputBox" Text="{Binding Path=PersonalStatement}" HorizontalAlignment="Left" Height="453" Margin="9,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="435" IsEnabled="False" />
         </Border>
 
         <Button x:Name="exportPDFButton" Content="Export PDF" Grid.Column="4" HorizontalAlignment="Left"
@@ -62,10 +45,12 @@
         <Button x:Name="workExperienceAndFuturePlansButton" Content="Work experience and placements"
                 Grid.Column="4" Command="{Binding NavCommand}" CommandParameter="workExperienceAndPlacements" HorizontalAlignment="Left" Height="37" Margin="181,83,0,0" Grid.Row="6" VerticalAlignment="Top" Width="101" FontSize="6"/>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Column="4" HorizontalAlignment="Left" Height="498" Margin="0,73,0,0" Grid.Row="6" VerticalAlignment="Top" Width="282">
+            <!--<views:CourseView />-->
+
             <Frame x:Name="NavigationFrame" HorizontalAlignment="Left" Margin="9,52,-1,-1" VerticalAlignment="Top" Height="445" Width="272" NavigationUIVisibility="Hidden" />
         </Border>
         <Button x:Name="courseButton" Content="Course" Grid.Column="4" HorizontalAlignment="Left" Height="37" Margin="10,83,0,0" Grid.Row="6" VerticalAlignment="Top" Width="73" Command = "{Binding NavCommand}" CommandParameter="course"/>
         <Label Content="Personal statement by: " Grid.Column="4" HorizontalAlignment="Left" Height="28" Margin="305,55,0,0" Grid.Row="6" VerticalAlignment="Top" Width="130"/>
-        <TextBox x:Name="personalStatementAuthorName" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="440,60,0,0" Grid.Row="6" VerticalAlignment="Top" Width="292" />
+        <TextBox x:Name="personalStatementAuthorName" Text="{Binding Path=Author}" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="440,60,0,0" Grid.Row="6" VerticalAlignment="Top" Width="292" />
     </Grid>
 </Window>

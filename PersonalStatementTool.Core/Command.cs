@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PersonalStatementTool.Core
+namespace PersonalStatementTool
 {
     public class Command : ICommand
     {
