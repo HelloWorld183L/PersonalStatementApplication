@@ -1,41 +1,48 @@
-﻿using Dynamensions.Infrastructure.Base;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Dynamensions.Infrastructure.Busses.MessageBus;
 using PersonalStatementTool.Core;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Input;
 
-namespace PersonalStatementTool.Presentation2.Viewmodels
+namespace PersonalStatementTool.Presentation2
 {
-    public class CourseViewModel : ViewModelBase
+    public class CourseViewModel : PersonalStatementViewModel
     {
-        public IMessageBus MessageBus { get; set; }
-        public ICommand TextChangedCommand { get; set; }
-        public PersonalStatementService PersonalStatementService { get; set; }
-        public List<string> TextBoxContent { get; set; }
+        private ObservableCollection<QuestionAnswerViewModel> _savedQuestionAnswerViewModels;
 
         public CourseViewModel() { }
 
-        public CourseViewModel(IMessageBus messageBus)
-        { 
-            MessageBus = messageBus;
-            TextChangedCommand = new Command(OnTextChanged, ReturnTrue);
-            PersonalStatementService = new PersonalStatementService();
-            TextBoxContent = new List<string>();
+        public CourseViewModel(IMessageBus messageBus) : base(messageBus)
+        {
+            _personalStatementService = new CourseService();
+            this.DisplayName = "Course";
         }
 
-        private void OnTextChanged(object newText)
+        protected override void OnViewLoaded()
         {
-            MessageBus.Publish(newText.ToString());
-            foreach (var textBoxText in TextBoxContent)
+            var questions = _personalStatementService.GetQuestions();
+
+            if (_savedQuestionAnswerViewModels != null)
             {
-                Debug.WriteLine("ZE TEXT IN ZE TEXTBOX IS THIS: " + textBoxText);
+                QuestionAnswers = _savedQuestionAnswerViewModels;
             }
-        }
+            else
+            {
+                if (questions != null) QuestionAnswers = new ObservableCollection<QuestionAnswerViewModel>(questions.Select((question) =>
+                {
+                    var questionAnswerViewModel = new QuestionAnswerViewModel(question);
+                    questionAnswerViewModel.AnswerChanged += (s, e) =>
+                    {
+                        if (question == null) return;
+                        _messageBus.Publish(new PersonalStatementMessage(MessageSource.CourseView, QuestionAnswers.Select(qa => qa.Answer)));
+                    };
 
-        private bool ReturnTrue(object obj)
-        {
-            return true;
+                    return questionAnswerViewModel;
+                }));
+
+                _savedQuestionAnswerViewModels = QuestionAnswers;
+            }
+            OnPropertyChanged("QuestionAnswers");
         }
     }
 }
