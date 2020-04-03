@@ -1,0 +1,24 @@
+﻿<Window x:Class="PersonalStatementTool.Presentation2.Views.ImportView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ViewModels="clr-namespace:PersonalStatementTool.Presentation2"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonalStatementTool.Presentation2.Views"
+        mc:Ignorable="d"
+        Title="Import file" Height="212.667" Width="316.416"
+        d:DataContext="{d:DesignInstance ViewModels:ImportViewModel, d:IsDesignTimeCreatable=True}">
+    <Grid Margin="0,0,2,1">
+        <Label x:Name="fileTypeInputLbl" Content="File type: " HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="fileTypeInput" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Margin="101,39,0,0">
+            <ComboBoxItem Content="PDF"/>
+            <ComboBoxItem Content="HTML"/>
+            <ComboBoxItem Content="Microsoft Word Document (.docx)"/>
+        </ComboBox>
+        <Label x:Name="importLocationInput" Content="Import location: " HorizontalAlignment="Left" Margin="7,67,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="importBtn" Content="IMPORT" HorizontalAlignment="Left" Margin="117,147,0,0" VerticalAlignment="Top" Width="75" Height="24"/>
+        <TextBox x:Name="importFileInput" HorizontalAlignment="Left" Height="23" Margin="104,71,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161"/>
+        <Button x:Name="importLocationBtn" Content="..." HorizontalAlignment="Left" Margin="270,72,0,0" VerticalAlignment="Top" Width="25" Height="22"/>
+
+    </Grid>
+</Window>

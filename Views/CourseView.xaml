@@ -1,64 +1,22 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2.Viewmodels"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:Core="clr-namespace:PersonalStatementTool.Core;assembly=PersonalStatementTool.Core"
-             xmlns:MessageBus="clr-namespace:Dynamensions.Infrastructure.Busses.MessageBus;assembly=Dynamensions.Infrastructure.MessageBus"
+             xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2;assembly=PersonalStatementTool.Presentation2"
              x:Class="PersonalStatementTool.Presentation2.Views.CourseView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <MessageBus:MessageBus x:Key="MessageBus"/>
-        <Core:PersonalStatementService x:Key="PersonalStatementService"/>
-    </UserControl.Resources>
-    
-    <UserControl.DataContext>
-        <viewModels:CourseViewModel PersonalStatementService="{StaticResource PersonalStatementService}" MessageBus="{StaticResource MessageBus}" />
-    </UserControl.DataContext>
-
-    <Grid>
-        <TextBlock Text ="Why are you applying for your chosen course(s)?" HorizontalAlignment="Left" Width="790" Margin="0,0,0,415" />
-        <TextBox x:Name="CourseQuestion1Txt" Height="49" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,97,11,0" Text="{Binding TextBoxContent[0]}" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged">
-                    <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding Text, ElementName=CourseQuestion1Txt}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
-        <TextBlock Text ="Why does this subject interest you?" HorizontalAlignment="Left" Width="790" Margin="0,76,0,341" />
-        <TextBox x:Name="CourseQuestion2Txt" Height="56" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,174,11,0" Text="{Binding TextBoxContent[1]}">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="TextChanged">
-                <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding Text, ElementName=CourseQuestion2Txt}"/>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        </TextBox>
-        <TextBlock Text ="Why do you think you're suitable for the course(s)?" HorizontalAlignment="Left" Width="791" Margin="-1,148,0,276" TextWrapping="Wrap" />
-        <TextBox x:Name="CourseQuestion3Txt" Height="70" VerticalAlignment="Top" TextWrapping="Wrap" Margin="-1,268,10,0" Text="{Binding TextBoxContent[2]}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged">
-                    <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding Text, ElementName=CourseQuestion3Txt}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
-        <TextBlock Text ="Do your current or previous studies relate to the course(s) that you have chosen?" TextWrapping="Wrap" Margin="-2,230,11,182" />
-        <TextBox x:Name="CourseQuestion4Txt" Height="65" VerticalAlignment="Top" TextWrapping="Wrap" Margin="1,375,10,0" Text="{Binding TextBoxContent[3]}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged">
-                    <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding Text, ElementName=CourseQuestion4Txt}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
-        <TextBlock Text ="Have you taken part in any other activities that demonstrate your interest in the course(s)?" Margin="1,338,-2,75" TextWrapping="Wrap"  />
-        <TextBox x:Name="CourseQuestion5Txt" Height="50" VerticalAlignment="Top" TextWrapping="Wrap" Margin="-1,21,10,0" Text="{Binding TextBoxContent[4]}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged">
-                    <i:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding Text, ElementName=CourseQuestion5Txt}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:CourseViewModel, d:IsDesignTimeCreatable=True}">
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=QuestionAnswers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Question}" TextWrapping="Wrap" Margin="0,0,0,10" />
+                        <TextBox Text="{Binding Path=Answer, Mode=TwoWay}" TextWrapping="Wrap" Margin="0,0,0,10" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
 </UserControl>

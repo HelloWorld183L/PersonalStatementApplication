@@ -1,0 +1,34 @@
+﻿<Window x:Class="PersonalStatementTool.Presentation2.Views.HelpView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:PersonalStatementTool.Presentation2;assembly=PersonalStatementTool.Presentation2"
+        xmlns:local="clr-namespace:PersonalStatementTool.Presentation2.Views"
+        mc:Ignorable="d"
+        Title="Help" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance viewModels:HelpViewModel, d:IsDesignTimeCreatable=True}">
+    <Grid>
+        <TextBlock x:Name="adviceTextBlock" HorizontalAlignment="Left" Height="98" Margin="10,10,0,0" TextWrapping="Wrap" 
+                   Text="To apply for a course, you will ened to complete a personal statement. A personal statement is your opportunity to sell yourself to your prospective school, college or training provider. This includes useful dos and don'ts which is advice from UCAS to be aware of when you write your personal statement. Be sure to ask your teacher, parent or carer if you're unsure about your personal statement or want extra advice." 
+                   VerticalAlignment="Top" Width="772" FontSize="16"/>
+        <Label x:Name="dosTitle" Content="Dos when writing your personal statement" HorizontalAlignment="Left" Height="39" Margin="10,128,0,0" VerticalAlignment="Top" Width="408" FontSize="20"/>
+        <TextBlock x:Name="dosTextBlock" HorizontalAlignment="Left" Height="84" Margin="27,167,0,0" TextWrapping="Wrap" 
+                   Text="Show your best English and proofread for any spelling or grammatical errors which can spoil your personal statement
+                   Show your strengths and outline your ideas clearly
+                                                                                                             
+                   Be enthusiatic - showing your interest in the course can help you get a place
+                   
+                                        Expect to produce multiple drafts of your personal statement before being totally happy with it
+                                   Ask people you trust for their feedback"
+        VerticalAlignment="Top" Width="623"/>
+        <Label x:Name="dontsTitle" Content="Don'ts when writing your personal statement" HorizontalAlignment="Left" Height="39" Margin="10,251,0,0" VerticalAlignment="Top" Width="408" FontSize="20"/>
+        <TextBlock x:Name="dontsTextBlock" HorizontalAlignment="Left" Height="57" Margin="27,290,0,0" TextWrapping="Wrap" 
+            Text="Don't exaggerate, you could get caught out in an interview when asked about an achievement
+                             Don't rely on a spellchecker to pick up all grammatical and spelling errors
+                                                              Don't leave your personal statement to the last minute"
+            VerticalAlignment="Top" Width="623"/>
+        <Label x:Name="sourceLabel" Content="Source: https://www.ucasdigital.com/widgets/personalstatement/index.html#/advice" HorizontalAlignment="Left" Height="31" Margin="27,352,0,0" VerticalAlignment="Top" Width="608" FontSize="16"/>
+
+    </Grid>
+</Window>
